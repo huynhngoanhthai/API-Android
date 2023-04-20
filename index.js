@@ -13,8 +13,10 @@ const port = 3000
 
 
 const userRouter = require("./routers/userRouter");
+
 app.use("/api/v1/users", userRouter);
 app.use(catchError);
+
 app.listen(3000,hostname,()=>{
     console.log(`listening on http://${hostname}:${port}`);
 })
