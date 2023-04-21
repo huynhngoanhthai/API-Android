@@ -10,8 +10,9 @@
   
     - [**🟡 1. Login**](#1-login)
     - [**🟡 2. Sign Up**](#2-sign-up)
-    - [**🟡 1.4. Recovery**](#3-send-mail)
-    - [**🟢 1.5. Password Reset**](#4-action)
+    - [**🟡 3. send mail**](#3-send-mail)
+    - [**🟢 4. action user**](#4-action)
+    - [**🔵 5. forgot Password**](#5-forgotpassword)
     
 # [**Introduction**](#introduction)
 
@@ -170,7 +171,7 @@ Trong API mình có sử dụng chức năng Variable của POSTMAN để tiết
 
 
 
-### [**🟡 3. Recovery**](#3-send-mail)
+### [**🟡 3. Send Mail**](#3-send-mail)
 
 - **Purpose**: Xử lý yêu cầu gửi otp qua email của user từ Android gửi tới.
 
@@ -196,7 +197,7 @@ Trong API mình có sử dụng chức năng Variable của POSTMAN để tiết
 </p>
 <h3 align="center">
 
-### [**🟢 4. Password Reset**](#4-action)
+### [**🟢 4. action user**](#4-action)
 
 - **Purpose**: Xử lý yêu cầu gửi action của user từ Android gửi tới.
 
@@ -214,5 +215,30 @@ Trong API mình có sử dụng chức năng Variable của POSTMAN để tiết
 
 <p align="center">
     <img src="./photo/postman04.png"/>
+</p>
+<h3 align="center">
+
+### [**🔵 4. forgot password**](#4-forgotpassword)
+
+- **Purpose**: Xử lý yêu cầu gửi quên mật khẩu của user từ Android gửi tới.
+
+- **Permission**: ADMIN - SUPPORTER - USER
+
+- **Method**: 🔵 **PUT**
+
+- **URL**: {{ENDPOINT_URL}}/api/v1/users/action/:email
+
+- **Headers**: bỏ trống
+
+- **Body**: 
+ 
+    | Tên                   | Tùy chọn | Ý nghĩa                                                                           |
+    |-----------------------|----------|-----------------------------------------------------------------------------------|
+    | Email                 | Bắt buộc | Email đăng ký tài khoản                                                           |
+  
+- **Respone**:
+
+<p align="center">
+    <img src="./photo/postman05.png"/>
 </p>
 <h3 align="center">
