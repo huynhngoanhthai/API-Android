@@ -5,8 +5,8 @@ const catchAsync = require("../middlewares/catchAsync");
 const mysql = require("../config/Database/mySQL");
 const EmailService = require("../utils/sendEmail");
 EmailService.init();
+
 exports.signup = catchAsync(async (req, res,next) => {
-  
   const { name, email, password } = req.body;
   const salt = bcrypt.genSaltSync();
   const hashPassword = bcrypt.hashSync(password, salt);
@@ -39,7 +39,7 @@ exports.login = catchAsync(async (req, res,next) => {
   
   
   mysql.query("SELECT * FROM users WHERE email = ?", [email], (error, result) => {
-      if (error)  throw new ApiEror(400, error.message);
+      if (error)   return next( new ApiError(400, error.sqlMessage));
       if (!result.length) return next( new ApiError(403, "email or password wrong"));
 
       const user = result[0];
@@ -88,25 +88,27 @@ exports.sendOTP = catchAsync(async (req,res) => {
   });
 })
 
-// exports.forgotPassword = catchAsync(async (req, res) => {
-//   const { email } = req.body;
+exports.forgotPassword = catchAsync(async (req, res) => {
+  const { email } = req.body;
+  const randomPassword = Math.floor(Math.random() * 99999999) + 10000000;
+  const salt = bcrypt.genSaltSync();
+  const hashPassword = bcrypt.hashSync(randomPassword.toString(), salt);
 
-//   if (!email) throw new ApiError(400, "Please provide email!");
+  mysql.query("CALL forgotpassword(?,?);",[email,hashPassword],(error, result) => {
+    if (error) {
+      return next( new ApiError(400, error.sqlMessage));
+    }
+    console.log(result);
+    EmailService.sendEmail(
+      email, 
+      "forgot Password",
+      "password new: " + randomPassword
+    );
+  
+    res.status(200).json({ success: true, message: "Please checked your email" });
+  })
 
-//   const user = await User.findOne({ email });
-
-//   const randomPassword = Math.floor(Math.random() * 99999999) + 10000000;
-
-//   user.updateOne({ password: randomPassword });
-
-//   EmailService.sendEmail(
-//     user.email,
-//     "forgot Password",
-//     "password new: " + randomPassword
-//   );
-
-//   res.status(200).json({ success: true, message: "Please checked your email" });
-// });
+});
 
 // exports.resetPassword = catchAsync(async (req, res) => {
 //   const { password, newPassword, newpasswordConfirmation } = req.body;
