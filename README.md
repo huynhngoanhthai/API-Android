@@ -224,13 +224,13 @@ sao đo tìm dòng
 </p>
 <h3 align="center">
 
-### [**🔵 4. forgot password**](#4-forgotpassword)
+### [**🟠 4. forgot password**](#4-forgotpassword)
 
 - **Purpose**: Xử lý yêu cầu gửi quên mật khẩu của user từ Android gửi tới.
 
 - **Permission**: ADMIN - SUPPORTER - USER
 
-- **Method**: 🔵 **PUT**
+- **Method**: 🟠 **PATCH**
 
 - **URL**: {{ENDPOINT_URL}}/api/v1/users/action/:email
 
