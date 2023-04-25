@@ -12,7 +12,7 @@
     - [**🟡 2. Sign Up**](#2-sign-up)
     - [**🟡 3. send mail**](#3-send-mail)
     - [**🟢 4. action user**](#4-action)
-    - [**🔵 5. forgot Password**](#5-forgotpassword)
+    - [**🟠 5. forgot Password**](#5-forgotpassword)
     
 # [**Introduction**](#introduction)
 
